@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     // 🪲 Bug: Incorrect ID used for attaching the event listener
-    // added corrected ID - solveRoom1
+    // FIXED: added corrected ID - solveRoom1
     document.getElementById("solveRoom1").addEventListener("click", () => {
         fetch('books.json') 
             .then(response => response.json())
             .then(books => {
                 const mostRecentBook = findMostRecentBook(books);
-                // 🪲 Bug: Incorrect element ID // added corrected ID - room1Result
+                // 🪲 Bug: Incorrect element ID //  FIXED: added corrected ID - room1Result
                 document.getElementById("room1Result").textContent = `The key to the next room is: ${mostRecentBook.title}`;
             });
     });
@@ -16,7 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // 🪲 Bug: What's mssing from JS concepts?
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
         // 🪲 Bug: Incorrect function call
-        const commonConcepts = findIntersection(jsConcepts, jsConcepts);
+        /*
+        FIXED, changed findIntersection(jsConcepts, jsConcepts) function call
+        to findIntersection(jsConcepts, jsConcepts)
+        */
+        const commonConcepts = findIntersection(jsConcepts, reactConcepts);
         document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
     });
 
