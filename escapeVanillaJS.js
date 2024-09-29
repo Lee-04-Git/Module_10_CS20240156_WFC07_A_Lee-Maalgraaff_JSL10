@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
     });
 
+    // Added async/await to handle asynchronous operations in Room 3.
     document.getElementById("solveRoom3").addEventListener("click", async () => {
         fetch('directions.json')
             .then(response => response.json())
@@ -35,9 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
     
 });
 
+// function findMostRecentBook(books) {
+//     // 🪲 Bug: Logic error
+//     return books.reduce((mostRecent, book) => new Date(book.published) < new Date(mostRecent.published) ? book : mostRecent);
+// }
+
 function findMostRecentBook(books) {
-    // 🪲 Bug: Logic error
-    return books.reduce((mostRecent, book) => new Date(book.published) < new Date(mostRecent.published) ? book : mostRecent);
+    // Check if the books array is empty
+    if (books.length === 0) return null; // Return null if no books are provided
+
+    // Use reduce to find the most recent book by publication date
+    return books.reduce((mostRecent, currentBook) => {
+        // Compare the current book's publication date with the most recent book's date
+        return new Date(currentBook.published) > new Date(mostRecent.published) ? currentBook : mostRecent;
+    });
 }
 
 function findIntersection(setA, setB) {
