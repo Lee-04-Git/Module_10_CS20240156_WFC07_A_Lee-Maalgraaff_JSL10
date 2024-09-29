@@ -36,11 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
     
 });
 
-// function findMostRecentBook(books) {
-//     // 🪲 Bug: Logic error
-//     return books.reduce((mostRecent, book) => new Date(book.published) < new Date(mostRecent.published) ? book : mostRecent);
-// }
+/*
+ function findMostRecentBook(books) {
+    // 🪲 Bug: Logic error
+     return books.reduce((mostRecent, book) => new Date(book.published) < new Date(mostRecent.published) ? book : mostRecent);
+ }
+*/
 
+//  FIXED: Updated findMostRecentBook to correctly use reduce for comparison.
 function findMostRecentBook(books) {
     // Check if the books array is empty
     if (books.length === 0) return null; // Return null if no books are provided
@@ -52,10 +55,26 @@ function findMostRecentBook(books) {
     });
 }
 
-function findIntersection(setA, setB) {
+/*
+ function findIntersection(setA, setB) {
     // 🪲 Bug: Incorrect logic
-    const intersection = new Set([...setA]);
-    return intersection;
+     const intersection = new Set([...setA]);
+     return intersection;
+    }
+*/
+
+function findIntersection(setA, setB) {
+    // Create a new Set to hold the intersection
+    const intersection = new Set();
+
+    // Iterate over setA and check if each element exists in setB
+    setA.forEach(item => {
+        if (setB.has(item)) {
+            intersection.add(item); // Add to intersection if present in setB
+        }
+    });
+
+    return intersection; // Return the resulting Set
 }
 
 async function navigateLabyrinth(directions) {
